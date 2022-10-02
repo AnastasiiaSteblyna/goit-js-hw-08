@@ -1,5 +1,4 @@
 import throttle from 'lodash.throttle';
-// _.throttle(func, [(wait = 0)], [(options = {})]);
 
 import Player from '@vimeo/player';
 
@@ -15,7 +14,7 @@ function onTimeupdate(data) {
 
 function onPlay(data) {
   let savedTime = localStorage.getItem(`videoplayer-current-time`);
-  if (data.seconds !== savedTime) {
+  if (savedTime !== null && data.seconds !== savedTime) {
     player.setCurrentTime(savedTime);
   }
 }
