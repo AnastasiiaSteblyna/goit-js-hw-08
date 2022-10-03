@@ -7,10 +7,10 @@ const messageInput = document.querySelector('[name="message"]');
 form.addEventListener('input', throttle(onFormInput, 500));
 function onFormInput() {
   let client = { Email: emailInput.value, Message: messageInput.value };
-  localStorage.setItem(`feedback-form-state`, JSON.stringify(client));
+  localStorage.setItem('feedback-form-state', JSON.stringify(client));
 }
 
-let savedClient = JSON.parse(localStorage.getItem(`feedback-form-state`));
+let savedClient = JSON.parse(localStorage.getItem('feedback-form-state'));
 if (savedClient !== null) {
   emailInput.value = savedClient.Email;
   messageInput.value = savedClient.Message;
