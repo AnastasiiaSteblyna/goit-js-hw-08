@@ -5,23 +5,13 @@ import Player from '@vimeo/player';
 const iframe = document.querySelector('#vimeo-player');
 const player = new Player(iframe);
 
-player.on(`timeupdate`, throttle(onTimeupdate, 1000));
+player.on('timeupdate', throttle(onTimeupdate, 1000));
 
-function onTimeupdate(data) {
-  localStorage.setItem(`videoplayer-current-time`, JSON.stringify(data));
+function onTimeupdate(e) {
+  localStorage.setItem('videoplayer-current-time', JSON.stringify(e.seconds));
 }
 
-let savedTime = JSON.parse(localStorage.getItem(`videoplayer-current-time`));
+let savedTime = JSON.parse(localStorage.getItem('videoplayer-current-time'));
 if (savedTime !== null) {
-  player
-    .setCurrentTime(savedTime)
-    .then(function (seconds) {})
-    .catch(function (error) {
-      switch (error.name) {
-        case 'Error':
-          break;
-        default:
-          break;
-      }
-    });
+  player.setCurrentTime(savedTime);
 }
